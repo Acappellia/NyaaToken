@@ -8,7 +8,8 @@
     - The reward item and amount can be pre-configured before allowing players to receive them.
     - One type of reward can be giving out at a time.
 - A villager shop exchanging tokens to souvenirs.
-    - Use a command to summon a vanilla villager at current location, offering up to 12 trades copied from summoner's inventory slots.
+    - Summon a vanilla villager shop at current location
+    - Use commands to add trades from inventory
     - Basically can be used on any occation that requires custom villager trades.
 
 ## Installation
@@ -22,9 +23,7 @@
 - `nyaatoken:player/get`
     - give reward to the executor or nearby player with records
 
-#### Admin Functions
-
-**Configuration**
+#### Configuration
 
 - `nyaatoken:reward/getcopy`
     - get a copy of the reward
@@ -42,17 +41,24 @@
 - `nyaatoken:reward/resetall`
     - reset all reward configurations and player records, stop reward giving
 
-**Main Toggle**
+#### Main Toggle
 
 - `nyaatoken:reward/toggleopen`
     - toggle reward giving
 
-**Shop functions(TBD)**
+#### Shop related
 
 - `nyaatoken:shop/summon`
-    - summon a villager shop based on executor's inventory
-- `nyaatoken:shop/remove`
+    - summon a new villager shop
+- `nyaatoken:shop/kill`
     - remove the nearest villager shop summoned by nyaatoken
+- `nyaatoken:shop/addtrade`
+    - add a new trade to the nearest villager shop, using the first 3 slots of hotbar as trade items
+- `nyaatoken:shop/removetrade`
+    - remove the latest added trade from the nearest villager shop, dropping trade items on ground
+
+#### Uninstall
+
 - `nyaatoken:uninstall`
     - remove all the scoreboard objectives used and disable this datapack
     - this will NOT remove villager shops summoned by this datapack
