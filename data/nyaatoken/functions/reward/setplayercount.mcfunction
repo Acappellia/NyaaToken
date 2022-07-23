@@ -1,0 +1,1 @@
+tellraw @p[distance=..10] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"点击此处为每个玩家配置数量","color":"dark_purple","underlined":true,"hoverEvent":{"action":"show_text","contents":[{"text":"/scoreboard players set [player] nt_rewardcount [count]"}]},"clickEvent":{"action":"suggest_command","value":"/scoreboard players set #player nt_rewardcount "}}]

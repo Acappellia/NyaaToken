@@ -1,1 +1,0 @@
-execute if score @s nt_haverw matches 0..

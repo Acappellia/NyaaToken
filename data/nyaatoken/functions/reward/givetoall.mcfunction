@@ -1,1 +1,0 @@
-# give main hand item to all players including offline ones.
