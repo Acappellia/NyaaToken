@@ -1,0 +1,1 @@
+# reset the rewards for all players

@@ -1,0 +1,1 @@
+# give mainhand item to all online players
