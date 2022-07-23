@@ -50,9 +50,9 @@
 |name           |entity         |allowedvalue       |description |
 |-              |-              |-                  |- |
 |nt_core        |#rewardOpen    |0/1                |whether players are allowed to get rewards |
-|nt_core        |#tmp           |any                |temporary variable |
-|               |               |                   |1: give different copies of reward according to `nt_rewardcount` |
 |nt_core        |#rewardType    |0/1                |0: all players get the same thing, wont check `nt_rewardcount` |
-|nt_haverw      |player         |0(null)/1          |(0)null: player have not receive the current reward |
+|               |               |                   |1: give different copies of reward according to `nt_rewardcount` |
+|nt_core        |#tmp           |any                |temporary variable |
+|nt_haverw      |player         |0(null)/1          |0(null): player have not receive the current reward |
 |               |               |                   |1: player already received the current reward |
 |nt_rewardcount |player         |+int               |the amount of reward copies each player can receive |
