@@ -1,4 +1,4 @@
-execute if score #rewardOpen nt_core matches 0 run tellraw @p[distance=..10] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"奖励发放还没有开始喵~","color":"light_gray"}]
+execute if score #rewardOpen nt_core matches 0 run tellraw @p[distance=..10] [{"text":"[NyaaToken] ","color":"gold"},{"text":"奖励发放还没有开始喵~","color":"gray"}]
 execute if score #rewardOpen nt_core matches 1 if score #rewardType nt_core matches 0 as @p[distance=..10] at @s run function nyaatoken:internal/giverw2all
 execute if score #rewardOpen nt_core matches 1 if score #rewardType nt_core matches 1 as @p[distance=..10] at @s run function nyaatoken:internal/giverw2spc
 execute if score #rewardOpen nt_core matches 1 if score #rewardType nt_core matches 2 as @p[distance=..10] at @s run function nyaatoken:internal/giverwhyb
