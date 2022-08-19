@@ -22,7 +22,8 @@
 
 - Fixed a bug that would cause reward resetting every time the server restarts.
 - The reward giving now uses a smarter method which no longer relies on chunk loading.
-- Added a toggle to keep shopkeepers' names and coordinates unchanged, so they will not be renamed or carried away with boats by accident.
+- Added a toggle to keep shopkeepers' names and coordinates unchanged, so they will not be renamed or carried away with boats by accident. 
+    - This takes no effect on shops summoned by previous versions of this datapack.
 - Please uninstall the previous version first to perform a clean update.
 
 ## Commands (functions)
@@ -95,4 +96,5 @@
 ## Data Storage  
 
 |name           |description |
+|-              |- |
 |reward         |store the current giving reward |
