@@ -16,6 +16,15 @@
 
 - Put the zip file in `/datapacks` folder in your world save just like any other datapacks.
 
+## Change Logs
+
+#### v0.1.2
+
+- Fixed a bug that would cause reward resetting every time the server restarts.
+- The reward giving now uses a smarter method which no longer relies on chunk loading.
+- Added a toggle to keep shopkeepers' names and coordinates unchanged, so they will not be renamed or carried away with boats by accident.
+- Please uninstall the previous version first to perform a clean update.
+
 ## Commands (functions)
 
 #### Player Funcitons
@@ -29,7 +38,6 @@
     - get a copy of the reward
 - `nyaatoken:reward/setitem`
     - set mainhand item as the reward
-    - use this command at spawn to ensure the chunk is keep loaded
 - `nyaatoken:reward/setdefaultcount`
     - set the copies of reward players can get by default
 - `nyaatoken:reward/setplayercount`
@@ -56,6 +64,8 @@
     - add a new trade to the nearest villager shop, using the first 3 slots of hotbar as trade items
 - `nyaatoken:shop/removetrade`
     - remove the latest added trade from the nearest villager shop, dropping trade items on ground
+- `nyaatoken:shop/togglefixpos`
+    - this turns on a feature using a loop function to keep shopkeepers' names and position unchanged
 
 #### Uninstall
 
@@ -73,7 +83,16 @@
 |               |               |                   |2: hybrid mode: player get default reward if not specified in `nt_rewardcount` |
 |nt_core        |#defaultCount  |+int               |0: default copies of reward for each player |
 |nt_core        |#tmp           |any                |temporary variable |
+|nt_core        |#shopFixedPos  |0/1                |whether to start a loop preventing players carrying villager shops away using boats, etc. |
 |nt_getdefaultrw|player         |0(null)/1          |0(null): player have not receive the default reward |
 |               |               |                   |1: player already received the default reward |
 |nt_rewardcount |player         |+int               |the amount of reward copies each player can receive |
 |nt_loopint     |player         |+int               |internal variable in loops |
+|nt_vshop_x     |villager shop  |double             |store villager shop location |
+|nt_vshop_y     |villager shop  |double             |store villager shop location |
+|nt_vshop_z     |villager shop  |double             |store villager shop location |
+
+## Data Storage  
+
+|name           |description |
+|reward         |store the current giving reward |
