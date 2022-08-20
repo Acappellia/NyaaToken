@@ -18,9 +18,22 @@
 
 ## Change Logs
 
+### v0.2.0
+
+- Optimized advanced mode
+    - The datapack now logs the exact types and amounts of reward items each player has got. 
+    - No need to reset if new rewards are added in advanced mode by updating reward list. The datapack compares reward-giving logs with the new list, giving the rest of rewards.
+- Added config backup for advanced mode
+    - Each time the reward-giving is reset, configs and logs in advanced mode are cloned for backup.
+- Added a command generator tool using python
+    - It generates a command through the csv and helps configure in game.
+
 ### v0.1.3
 
-- Added an advanced mode for complicated rewards
+- Added an advanced mode for complicated rewards.
+    - It is based on a manually-configured reward list.
+    - Reward-giving recognize players UUIDs instead of names in advanced mode.
+    - Multiple rewards can be given at one time.
 
 ### v0.1.2
 
@@ -97,6 +110,7 @@
 |nt_core        |#tmp           |any                |temporary variable |
 |nt_core        |#tmploop       |any                |temporary variable |
 |nt_core        |#tmploop2      |any                |temporary variable |
+|nt_core        |#tmploopindex  |any                |temporary variable |
 |nt_getdefaultrw|player         |0(null)/1          |0(null): player have not receive the default reward |
 |               |               |                   |1: player already received the default reward |
 |nt_rewardcount |player         |+int               |the amount of reward copies each player can receive |
@@ -111,12 +125,19 @@
     - `List` reward : list of reward items
         - `Compound` : item nbt
             - ...
-    - `List` playerdata : list of reward giving states for each player
+    - `List` playerdata : list of reward giving configures for each player
         - `Compound`
-            - `list` uuid : player uuid in Int-array form
+            - `List` uuid : player uuid in Int-array form
                 - ...
             - `List` count : list of the item amounts that the player can get, corresponding to the reward items list
                 - `Int` : item counts
-    - `List` playerreceived : list of player UUIDs that already received the reward
-        - `list` : player uuid in Int-array form
+    - `List` playerreceived : list of reward giving status for each player
+        - `Compound`
+            - `List` uuid : player uuid in Int-array form
+                - ...
+            - `List` count : list of the item amounts that the player have already get, corresponding to the reward items list
+                - `Int` : item counts
+- nyaatoken:backup 
+    - `List` backup : backs up every time the reward is reset
+        - `Compound` : the same as nyaatoken:reward
 

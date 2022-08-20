@@ -12,6 +12,9 @@ data remove storage nyaatoken:reward playerreceived
 data remove storage nyaatoken:reward tmpplayerdata
 data remove storage nyaatoken:reward tmpreward
 data remove storage nyaatoken:reward tmpreceived
+
+data remove storage nyaatoken:backup backup
+
 #tp @e[type=armor_stand,tag=nt_reward_stand] ~ -256 ~
 
 tellraw @p[distance=..10] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"NyaaToken已卸载, 请手动删除数据包zip文件","color":"gray"}]

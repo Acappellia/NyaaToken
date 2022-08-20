@@ -13,3 +13,9 @@ scoreboard players set #advancedWait nt_core 0
 scoreboard players set #rewardType nt_core 2
 scoreboard players set #defaultCount nt_core 1
 scoreboard players set #shopFixedPos nt_core 1
+
+data modify storage nyaatoken:reward reward set value []
+data modify storage nyaatoken:reward playerdata set value []
+data modify storage nyaatoken:reward playerreceived set value []
+
+data modify storage nyaatoken:backup backup set value []
