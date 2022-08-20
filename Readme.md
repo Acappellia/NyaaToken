@@ -18,7 +18,11 @@
 
 ## Change Logs
 
-#### v0.1.2
+### v0.1.3
+
+- Added an advanced mode for complicated rewards
+
+### v0.1.2
 
 - Fixed a bug that would cause reward resetting every time the server restarts.
 - The reward giving now uses a smarter method which no longer relies on chunk loading.
@@ -49,6 +53,10 @@
     - toggle reward giving type, see variables for details
 - `nyaatoken:reward/resetall`
     - reset all reward configurations and player records, stop reward giving
+- `nyaatoken:advanced/toggle`
+    - toggle advanced mode, giving rewards according to a storage nbt data
+- `nyaatoken:advanced/addrewarditem`
+    - append a new type of reward to the reward list.
 
 #### Main Toggle
 
@@ -83,8 +91,12 @@
 |               |               |                   |1: give different copies of reward according to `nt_rewardcount` |
 |               |               |                   |2: hybrid mode: player get default reward if not specified in `nt_rewardcount` |
 |nt_core        |#defaultCount  |+int               |0: default copies of reward for each player |
-|nt_core        |#tmp           |any                |temporary variable |
 |nt_core        |#shopFixedPos  |0/1                |whether to start a loop preventing players carrying villager shops away using boats, etc. |
+|nt_core        |#advancedMode  |0/1                |whether to turn on advanced mode, which gives rewards according to a manually-configured storage nbt data |
+|nt_core        |#advancedWait  |0/1                |automatically set to 1 if a player is receiving rewards in advanced mode, preventing variable conflict |
+|nt_core        |#tmp           |any                |temporary variable |
+|nt_core        |#tmploop       |any                |temporary variable |
+|nt_core        |#tmploop2      |any                |temporary variable |
 |nt_getdefaultrw|player         |0(null)/1          |0(null): player have not receive the default reward |
 |               |               |                   |1: player already received the default reward |
 |nt_rewardcount |player         |+int               |the amount of reward copies each player can receive |
@@ -93,8 +105,18 @@
 |nt_vshop_y     |villager shop  |double             |store villager shop location |
 |nt_vshop_z     |villager shop  |double             |store villager shop location |
 
-## Data Storage  
+## Storage Structure 
 
-|name           |description |
-|-              |- |
-|reward         |store the current giving reward |
+- nyaatoken:reward
+    - `List` reward : list of reward items
+        - `Compound` : item nbt
+            - ...
+    - `List` playerdata : list of reward giving states for each player
+        - `Compound`
+            - `list` uuid : player uuid in Int-array form
+                - ...
+            - `List` count : list of the item amounts that the player can get, corresponding to the reward items list
+                - `Int` : item counts
+    - `List` playerreceived : list of player UUIDs that already received the reward
+        - `list` : player uuid in Int-array form
+

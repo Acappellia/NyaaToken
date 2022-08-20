@@ -1,5 +1,6 @@
-tp @e[type=armor_stand,tag=nt_reward_stand] ~ -256 ~
+#tp @e[type=armor_stand,tag=nt_reward_stand] ~ -256 ~
 
+data remove storage nyaatoken:reward reward
 data modify storage nyaatoken:reward reward[] set from entity @p[distance=..10] SelectedItem
 
 #summon armor_stand ~ -63 ~ {NoGravity:1b,Silent:1b,Invulnerable:1b,Marker:1b,Invisible:1b,NoBasePlate:1b,Tags:["nt_reward_stand"],DisabledSlots:4144959}
