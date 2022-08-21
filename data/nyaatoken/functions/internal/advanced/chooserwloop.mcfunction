@@ -1,3 +1,4 @@
+scoreboard players set @s nt_loopint 0
 scoreboard players set #tmploop nt_core 0
 execute store success score #tmploop nt_core store result score @s nt_loopint run data get storage nyaatoken:reward tmpplayerdata[0].count[0]
 scoreboard players set #tmploop2 nt_core 0
