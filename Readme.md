@@ -18,6 +18,11 @@
 
 ## Change Logs
 
+### v0.2.1
+
+- Fixed the bug that would cause advanced-reward resetting
+- Fixed a critical bug in multiplayer
+
 ### v0.2.0
 
 - Optimized advanced mode
