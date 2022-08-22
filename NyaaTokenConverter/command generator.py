@@ -2,6 +2,9 @@ import mcuuid
 import numpy as np
 import csv
 import os
+import tkinter as tk
+from tkinter import filedialog
+import json
 
 def twos_complement(hexstr,bits):
     value = int(hexstr,16)
@@ -12,16 +15,26 @@ def twos_complement(hexstr,bits):
 def get_int_array(playername):
     print('importing ' + playername)
     player = mcuuid.MCUUID(name=playername)
-    playerid = str(player.uuid)
-    int_array = '[I; '
-    for i in range(4):
-        sep = playerid[8*i:8*i+8]
-        int_array += (str(twos_complement(sep,32))+', ')
-    int_array = int_array.strip(', ') + ']'
-    return int_array
+    try:
+        playerid = str(player.uuid)
+    except json.decoder.JSONDecodeError:
+        print('Found no player called ' + playername + ', skipping...')
+        return
+    else:
+        int_array = '[I; '
+        for i in range(4):
+            sep = playerid[8*i:8*i+8]
+            int_array += (str(twos_complement(sep,32))+', ')
+        int_array = int_array.strip(', ') + ']'
+        return int_array
+
+root = tk.Tk()
+root.withdraw()
+f_path = filedialog.askopenfilename(title='Choose csv file',filetypes=[('csv files','.csv')],initialdir='./')
+print('Reading from ', f_path)
 
 rows = []
-with open('rewarddata.csv') as file:
+with open(f_path) as file:
     csvreader = csv.reader(file)
     header = next(csvreader)
     for row in csvreader:
@@ -29,16 +42,21 @@ with open('rewarddata.csv') as file:
 
 playerdatalist = []
 for row in rows:
-    playerstring = '{uuid:'
     name = row[0]
-    playerstring += (get_int_array(name) + ', count:[')
-    row = row[1:]
-    playerstring += (','.join(row) + ']}')
-    playerdatalist.append(playerstring)
+    playerstring = '{uuid:'
+    int_array = get_int_array(name)
+    if (int_array == None):
+        continue
+    else:
+        playerstring += (int_array + ', count:[')
+        row = row[1:]
+        playerstring += (','.join(row) + ']}')
+        playerdatalist.append(playerstring)
 
 playerdata = '/data modify storage nyaatoken:reward playerdata set value [' + ','.join(playerdatalist) + ']\n'
-file = open("result.txt", "a")
+file = open("result.txt", "w")
 file.write(playerdata)
 file.close()
 
+print('Successfully generated reward config for ' + str(len(playerdatalist)) + '/' + str(len(rows)) + ' players')
 os.system("pause")
