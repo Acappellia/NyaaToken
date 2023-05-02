@@ -1,1 +1,1 @@
-/data modify storage nyaatoken:reward playerdata set value [{uuid:[I; -355945578, 781078456, -1930179804, -1672254554], count:[1,2,3,1,2]}]
+/data modify storage nyaatoken:reward playerdata set value [{uuid:[I; -355945578, 781078456, -1930179804, -1672254554], count:[1,2,3,1,2]},{uuid:[I; -283315038, 952978021, -1560995823, 899408245], count:[1,5,2,0,3]}]
