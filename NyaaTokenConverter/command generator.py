@@ -1,9 +1,13 @@
+# A tool to generate import commands for NyaaToken
+# Follow the instructions to create the correct csv
+# Run this script with --<filename.csv> to import csv file
+# TODO
+
+
 import mcuuid
 import numpy as np
 import csv
 import os
-import tkinter as tk
-from tkinter import filedialog
 import json
 
 def twos_complement(hexstr,bits):
@@ -28,9 +32,7 @@ def get_int_array(playername):
         int_array = int_array.strip(', ') + ']'
         return int_array
 
-root = tk.Tk()
-root.withdraw()
-f_path = filedialog.askopenfilename(title='Choose csv file',filetypes=[('csv files','.csv')],initialdir='./')
+f_path = "./rewarddata.csv"
 print('Reading from ', f_path)
 
 rows = []

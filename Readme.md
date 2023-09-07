@@ -1,148 +1,151 @@
 # NyaaToken：Event Reward Tools
 
+This datapack has been rewrite for newer versions of Minecraft (1.20.1+).
+
 ## Features
 
 - A minecraft datapack that help minigame event holders giving out rewards
 - Players can recieve event reward tokens with a single command.
-    - Upon stepping on a pressure plate or something else, the reward is given and the player is recorded. Offline players can login at any time to receive the reward until the next reward is open.
+    - Upon stepping on a pressure plate or something else, the reward items are given to player. Offline players can login at any time to receive the items.
     - The reward item and amount can be pre-configured before allowing players to receive them.
-    - One type of reward can be giving out at a time.
+    - All data are recorded in storage and can be easily imported with an external tool and a single command.
 - A villager shop exchanging tokens to souvenirs.
     - Summon a vanilla villager shop at current location
     - Use commands to add trades from inventory
     - Basically can be used on any occation that requires custom villager trades.
 
-## Installation
+## Support Game Version
 
-- Put the zip file in `/datapacks` folder in your world save just like any other datapacks.
+1.20.1 +
 
-## Change Logs
+## Usage
 
-### v0.2.1
+#### Installation
 
-- Fixed the bug that would cause advanced-reward resetting
-- Fixed a critical bug in multiplayer
+- Put the datapack folder in `/datapacks` folder in your world save just like any other datapacks.
+- OR, just `git clone` this repository in `/datapacks` directory in world save.
 
-### v0.2.0
+#### Datapack Update
 
-- Optimized advanced mode
-    - The datapack now logs the exact types and amounts of reward items each player has got. 
-    - No need to reset if new rewards are added in advanced mode by updating reward list. The datapack compares reward-giving logs with the new list, giving the rest of rewards.
-- Added config backup for advanced mode
-    - Each time the reward-giving is reset, configs and logs in advanced mode are cloned for backup.
-- Added a command generator tool using python
-    - It generates a command through the csv and helps configure in game.
+- Replace the old files with the new ones, or use `git pull` in `/datapacks` directory in world save.
+- Use `/reload` in game to load the new version.
+- If NyaaToken below version `v2.0` has already been installed, uninstalling before update is suggested to prevent some potential conflicts. The uninstall command is `/function nyaatoken:uninstall` in previous versions.
 
-### v0.1.3
+#### Add a new reward
 
-- Added an advanced mode for complicated rewards.
-    - It is based on a manually-configured reward list.
-    - Reward-giving recognize players UUIDs instead of names in advanced mode.
-    - Multiple rewards can be given at one time.
+- Start a new form, record a list of players and the reward item count for each player. Save the form in `.csv` format.
+- The form should have the following format:
 
-### v0.1.2
+|Name       |item A     |item B     |...    |
+|-          |-          |-          |...    |
+|PlayerA    |12         |48         |...    |
+|PlayerB    |15         |96         |...    |
+|...        |...        |...        |...    |
 
-- Fixed a bug that would cause reward resetting every time the server restarts.
-- The reward giving now uses a smarter method which no longer relies on chunk loading.
-- Added a toggle to keep shopkeepers' names and coordinates unchanged, so they will not be renamed or carried away with boats by accident. 
-    - This takes no effect on shops summoned by previous versions of this datapack.
-- Please uninstall the previous version first to perform a clean update.
+> NOTE: The player names can duplicate, all rows of a player will sum together. Up to 9 kinds of items can be added at once.
+
+- Use the `command generator.py` tool to generate a long command, which can import your form into Minecraft game.
+- Log into your server, copy the generated command into a command block and activate it.
+- Create the reward items ingame, like a souvenir token.
+- Align the items in your horbar from slot 1 to 9 in the same order of your form (item count does not matter), and execute the command `/function nt:edit/addreward`
+- Now the reward is added. Use `/function nt:maintogggle` to turn on player-receiving.
+
+#### Setting the location for players to receive rewards
+
+- Choose a location to place a command block.
+
+> NOTE: The blocks above y=255 in the column of the command block should contain at least 2 continuous air blocks. This will happen in most cases, here is just a reminder because we need locations to place temporary shulker boxes
+
+- Type `function nt:player/get` in command block
+- Use `/function nt:maintogggle` to turn on the player-receiving feature
+- Players can now activate this command block to get their rewards
+
+#### Villager shop editing
+
+- This is simple. Just refer to the `Command` section.
 
 ## Commands (functions)
 
 #### Player Funcitons
 
-- `nyaatoken:player/get`
+- `nt:player/get`
     - give reward to the executor or nearby player with records
 
 #### Configuration
 
-- `nyaatoken:reward/getcopy`
-    - get a copy of the reward
-- `nyaatoken:reward/setitem`
-    - set mainhand item as the reward
-- `nyaatoken:reward/setdefaultcount`
-    - set the copies of reward players can get by default
-- `nyaatoken:reward/setplayercount`
-    - set the copies of reward each player can get
-- `nyaatoken:reward/setallonlineplayercount`
-    - set the copies of reward each player can get for all online players
-- `nyaatoken:reward/toggletype`
-    - toggle reward giving type, see variables for details
-- `nyaatoken:reward/resetall`
-    - reset all reward configurations and player records, stop reward giving
-- `nyaatoken:advanced/toggle`
-    - toggle advanced mode, giving rewards according to a storage nbt data
-- `nyaatoken:advanced/addrewarditem`
-    - append a new type of reward to the reward list.
+- `nt:edit/addreward`
+    - add a new type of reward
+    - use hotbar items as the reward item
+    - the reward data must be imported first
+- `nt:edit/removereward`
+    - delete the last added reward
+- `nt:edit/backupstorage`
+    - backup the storage data
+    - only ONE backup are stored
+- `nt:edit/recoverstorage`
+    - recover the storage data
 
 #### Main Toggle
 
-- `nyaatoken:reward/toggleopen`
+- `nt:maintoggle`
     - toggle reward giving
 
 #### Shop related
 
-- `nyaatoken:shop/summon`
+- `nt:shop/summon`
     - summon a new villager shop
-- `nyaatoken:shop/kill`
+- `nt:shop/kill`
     - remove the nearest villager shop summoned by nyaatoken
-- `nyaatoken:shop/addtrade`
+- `nt:shop/addtrade`
     - add a new trade to the nearest villager shop, using the first 3 slots of hotbar as trade items
-- `nyaatoken:shop/removetrade`
+- `nt:shop/removetrade`
     - remove the latest added trade from the nearest villager shop, dropping trade items on ground
-- `nyaatoken:shop/togglefixpos`
-    - this turns on a feature using a loop function to keep shopkeepers' names and position unchanged
 
 #### Uninstall
 
-- `nyaatoken:uninstall`
+- `nt:uninstall`
+    - all storage data will be backup
     - remove all the scoreboard objectives used and disable this datapack
     - this will NOT remove villager shops summoned by this datapack
 
-## Scoreboard Variables
+#### Storage Structure 
 
-|name           |entity         |allowedvalue       |description |
-|-              |-              |-                  |- |
-|nt_core        |#rewardOpen    |0/1                |whether players are allowed to get rewards |
-|nt_core        |#rewardType    |0/1                |0: all players get default copies of reward |
-|               |               |                   |1: give different copies of reward according to `nt_rewardcount` |
-|               |               |                   |2: hybrid mode: player get default reward if not specified in `nt_rewardcount` |
-|nt_core        |#defaultCount  |+int               |0: default copies of reward for each player |
-|nt_core        |#shopFixedPos  |0/1                |whether to start a loop preventing players carrying villager shops away using boats, etc. |
-|nt_core        |#advancedMode  |0/1                |whether to turn on advanced mode, which gives rewards according to a manually-configured storage nbt data |
-|nt_core        |#advancedWait  |0/1                |automatically set to 1 if a player is receiving rewards in advanced mode, preventing variable conflict |
-|nt_core        |#tmp           |any                |temporary variable |
-|nt_core        |#tmploop       |any                |temporary variable |
-|nt_core        |#tmploop2      |any                |temporary variable |
-|nt_core        |#tmploopindex  |any                |temporary variable |
-|nt_getdefaultrw|player         |0(null)/1          |0(null): player have not receive the default reward |
-|               |               |                   |1: player already received the default reward |
-|nt_rewardcount |player         |+int               |the amount of reward copies each player can receive |
-|nt_loopint     |player         |+int               |internal variable in loops |
-|nt_vshop_x     |villager shop  |double             |store villager shop location |
-|nt_vshop_y     |villager shop  |double             |store villager shop location |
-|nt_vshop_z     |villager shop  |double             |store villager shop location |
-
-## Storage Structure 
-
-- nyaatoken:reward
-    - `List` reward : list of reward items
-        - `Compound` : item nbt
-            - ...
+- nt:reward
+    - `List` items : list of reward items
+        - `Compound`
+            - `int` ntid : item id
+            - `Compound` item : item compound
+                - ...
     - `List` playerdata : list of reward giving configures for each player
         - `Compound`
-            - `List` uuid : player uuid in Int-array form
+            - `List` UUID : player uuid in Int-array form
                 - ...
-            - `List` count : list of the item amounts that the player can get, corresponding to the reward items list
-                - `Int` : item counts
-    - `List` playerreceived : list of reward giving status for each player
-        - `Compound`
-            - `List` uuid : player uuid in Int-array form
-                - ...
-            - `List` count : list of the item amounts that the player have already get, corresponding to the reward items list
-                - `Int` : item counts
-- nyaatoken:backup 
-    - `List` backup : backs up every time the reward is reset
-        - `Compound` : the same as nyaatoken:reward
+            - `List` data : list of reward data
+                - `Compound`
+                    - `int` ntid : item id correspounding to reward item list
+                    - `int` count : amount of items that player should recieve
+                    - `int` received : amount of items that player has already received
+- nt:backup 
+    - `Compound` backup : have the same structure as `nt:reward`
+- nt:import
+    - `Compound` import : the generated storage to be merged with current playerdata
+        - `List` playerdata : list of reward giving configures for each player
+            - `Compound`
+                - `List` UUID : player uuid in Int-array form
+                    - ...
+                - `List` data : list of reward data
+                    - `Compound`
+                        - `int` index : index of item type in this import (1-9)
+                        - `int` count : amount of items that player should recieve
+- nt:tmp
+    - `Compound` tmp : tmp storage
+        
 
+
+## Change Logs
+
+### v2.0
+
+- Complete rewrite for better performance & convenience
+- Reward-giving now only has one mode. Reward data can be imported by external tools.
+- Please uninstall the previous version first to perform a clean update.

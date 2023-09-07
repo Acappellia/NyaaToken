@@ -1,1 +1,0 @@
-tellraw @p[distance=..10] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"点击此处并输入希望修改的值","color":"dark_aqua","underlined":true,"hoverEvent":{"action":"show_text","contents":[{"text":"/scoreboard players set #defaultCount nt_core [value]"}]},"clickEvent":{"action":"suggest_command","value":"/scoreboard players set #defaultCount nt_core "}}]
