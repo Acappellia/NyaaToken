@@ -44,7 +44,7 @@ This datapack has been rewrite for newer versions of Minecraft (1.20.1+).
 
 > NOTE: The player names can duplicate, all rows of a player will sum together. Up to 9 kinds of items can be added at once.
 
-- Use the `command generator.py` tool to generate a long command, which can import your form into Minecraft game.
+- Use the `command_generator.py` tool to generate a long command, which can import your form into Minecraft game.
 - Log into your server, copy the generated command into a command block and activate it.
 - Create the reward items ingame, like a souvenir token.
 - Align the items in your horbar from slot 1 to 9 in the same order of your form (item count does not matter), and execute the command `/function nt:edit/addreward`
