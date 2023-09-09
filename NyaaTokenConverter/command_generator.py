@@ -5,23 +5,35 @@
 import mcuuid
 import csv, requests, sys, getopt
 
+max_try = 100
+
 def twos_complement(hexstr,bits):
     value = int(hexstr,16)
     if value & (1 << (bits-1)):
         value -= 1 << bits
     return value
 
-def get_int_array(playername):
-    print('importing ' + playername)
+def get_int_array(playername,try_count):
+    if try_count > max_try:
+        print('Connection error or playername', playername, 'not found. Skipping...')
+        return
+    if try_count == 0:
+        print('Importing', playername, '...')
+    else:
+        sys.stdout.write('\x1b[1A')
+        sys.stdout.write('\x1b[2K')
+        print('Importing', playername, try_count, '/', max_try, '...')
     player = mcuuid.MCUUID(name=playername)
     try:
         playerid = str(player.uuid)
     except KeyError:
-        print('Found no player called ', playername, ', skipping...')
-        return
+        try_count += 1
+        int_array = get_int_array(playername, try_count)
+        return int_array
     except requests.exceptions.ConnectionError:
-        print('Connection to mojang times out.')
-        sys.exit()
+        try_count += 1
+        int_array = get_int_array(playername, try_count)
+        return int_array
     else:
         int_array = '[I; '
         for i in range(4):
@@ -89,7 +101,7 @@ for row in rows:
 playerdatalist = []
 for name, data in datadict.items():
     playerstring = '{UUID:'
-    int_array = get_int_array(name)
+    int_array = get_int_array(name,0)
     if (int_array == None):
         continue
     else:
