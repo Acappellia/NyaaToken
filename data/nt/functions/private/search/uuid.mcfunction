@@ -1,7 +1,8 @@
 ##called to search uuid in reward data
 
 ##init a marker & check current id
-data remove storage nt:tmp tmp
+data remove storage nt:tmp tmp.UUID_check
+data remove storage nt:tmp tmp.UUID_mark
 data modify storage nt:tmp tmp.UUID_check set from storage nt:reward playerdata[0].UUID
 data modify storage nt:tmp tmp.UUID_mark set from storage nt:reward playerdata[0].UUID
 

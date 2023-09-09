@@ -1,0 +1,1 @@
+data modify storage nt:import import.playerdata set value [{UUID:[I; -355945578, 781078456, -1930179804, -1672254554], data:[{index: 1, count: 4},{index: 2, count: 2},{index: 3, count: 8},{index: 4, count: 1},{index: 5, count: 99}]},{UUID:[I; -283315038, 952978021, -1560995823, 899408245], data:[{index: 1, count: 1},{index: 2, count: 5},{index: 5, count: 3}]}]

@@ -79,6 +79,8 @@ This datapack has been rewrite for newer versions of Minecraft (1.20.1+).
     - the reward data must be imported first
 - `nt:edit/removereward`
     - delete the last added reward
+- `nt:edit/removespecreward`
+    - delete the reward specified by the scoreboard `#remove_ntid`
 - `nt:edit/backupstorage`
     - backup the storage data
     - only ONE backup are stored

@@ -26,7 +26,6 @@ scoreboard players reset #give_full nt_core
 execute store result score #inv_slots nt_core if data entity @s Inventory[]
 scoreboard players remove #inv_slots nt_core 36
 scoreboard players operation #inv_slots nt_core *= #-1 nt_core
-execute store result score #give_slots nt_core if data block ~ ~ ~ Items[]
 
 ##loop to put each item in box
 execute if data storage nt:tmp tmp.items[0] run function nt:private/get/getloop
@@ -35,7 +34,10 @@ execute if data storage nt:tmp tmp.items[0] run function nt:private/get/getloop
 loot give @s mine ~ ~ ~ stone{drop_contents:1}
 setblock ~ ~ ~ air
 
+##clear tmp
+data remove storage nt:tmp tmp
+
 ##tellraw
-execute if score #reward_count nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"gold"},{"text":"共计 ","color":"green"},{"score":{"name": "#reward_count","objective": "nt_core"},"color": "white"},{"text":" 份奖励 ","color":"green"},{"score":{"name": "#item_count","objective": "nt_core"},"color": "white"},{"text":" 件物品已经全部领取～","color":"green"}]
-execute if score #give_full nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"gold"},{"text":"共计 ","color":"green"},{"score":{"name": "#reward_count","objective": "nt_core"},"color": "white"},{"text":" 份奖励 ","color":"green"},{"score":{"name": "#item_count","objective": "nt_core"},"color": "white"},{"text":" 件物品已领取～\\n","color":"green"},{"text":"[NyaaToken] ","color":"gold"},{"text":"请为背包腾出空位后继续领取剩余奖励...","color":"dark_green"}]
-execute unless score #reward_count nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"gold"},{"text":"奖励已经领取完啦！","color":"gold"}]
+execute if score #reward_count nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"gold"},{"text":"共计 ","color":"green"},{"score":{"name": "#reward_count","objective": "nt_core"},"color": "white"},{"text":" 份奖励 ","color":"green"},{"score":{"name": "#item_count","objective": "nt_core"},"color": "white"},{"text":" 件物品已经领取～","color":"green"}]
+execute if score #give_full nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"gold"},{"text":"请为背包腾出空位后继续领取奖励...","color":"dark_green"}]
+execute unless score #give_full nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"gold"},{"text":"全部奖励已领取完毕～","color":"yellow"}]

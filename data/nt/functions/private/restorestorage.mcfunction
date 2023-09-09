@@ -10,3 +10,4 @@ data modify storage nt:reward playerdata set from storage nt:backup backup.playe
 execute store result score #rewardid nt_core run data get storage nt:backup backup.rewardid
 
 tellraw @a[tag=nt_restore] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"数据已恢复","color":"white"}]
+tag @a remove nt_restore

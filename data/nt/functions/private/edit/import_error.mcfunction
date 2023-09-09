@@ -11,4 +11,4 @@ data remove storage nt:import import
 tag @s remove nt_import
 
 ##tellraw
-tellraw @p[distance=..10] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"导入数据检查不通过，未造成更改。请检查配置与快捷栏是否正确。确认后请重新导入。","color":"red"}]
+tellraw @s [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"数据检查不通过，未造成修改。请检查后重新导入。","color":"red"}]

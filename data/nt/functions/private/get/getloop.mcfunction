@@ -4,6 +4,7 @@
 #define score_holder #search_ntid_source
 
 ##check if player bp full
+execute store result score #give_slots nt_core if data block ~ ~ ~ Items[]
 execute if score #give_slots nt_core >= #inv_slots nt_core run scoreboard players set #give_full nt_core 1
 execute if score #give_slots nt_core >= #inv_slots nt_core run return -1
 

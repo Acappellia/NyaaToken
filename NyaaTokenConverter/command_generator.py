@@ -32,20 +32,25 @@ def get_int_array(playername):
 
 #read args
 f_path = ''
+o_path = ''
 try:
-    opts, args = getopt.getopt(sys.argv[1:],"h:i:",["help=","ifile="])
+    opts, args = getopt.getopt(sys.argv[1:],"h:i:o:",["help=","ifile=","ofile="])
 except getopt.GetoptError:
-    print ('Usage: command_generator.py -i <f_path>')
+    print ('Usage: command_generator.py -i <f_path> [-o <f_path>]')
     sys.exit()
 for opt, arg in opts:
     if opt == '-h':
-         print ('Usage: command_generator.py -i <f_path>')
+         print ('Usage: command_generator.py -i <f_path> [-o <f_path>]')
          sys.exit()
     elif opt in ("-i", "--ifile"):
          f_path = arg
+    elif opt in ("-o", "--ofile"):
+         o_path = arg
 if f_path == '':
     print ('Usage: command_generator.py -i <f_path>')
     sys.exit()
+if o_path == '':
+    o_path = 'generated_command.mcfunction'
 
 print('Reading from ', f_path)
 
@@ -60,8 +65,9 @@ with open(f_path) as file:
 #write as dict
 datadict = dict()
 itemlen = len(rows[0])
-if itemlen > 9:
-    itemlen = 9
+originlen = itemlen
+if itemlen > 10:
+    itemlen = 10
 for row in rows:
     name = row[0]
     if datadict.get(name) == None:
@@ -97,8 +103,9 @@ for name, data in datadict.items():
         playerdatalist.append(playerstring)
 
 playerdata = 'data modify storage nt:import import.playerdata set value [' + ','.join(playerdatalist) + ']\n'
-file = open("generated_command.mcfunction", "w")
+file = open(o_path, "w")
 file.write(playerdata)
 file.close()
 
-print('Successfully generated', itemlen - 1, 'types of reward config for', len(playerdatalist), '/', + len(datadict), 'players.')
+print('Successfully generated', itemlen - 1,'/', originlen - 1, 'types of reward config for', len(playerdatalist), '/', + len(datadict), 'players.')
+print('File generated as', o_path)

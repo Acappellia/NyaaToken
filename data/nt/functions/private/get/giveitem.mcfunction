@@ -6,7 +6,7 @@
 ##check if given
 execute store result score #items_to_give nt_core run data get storage nt:reward playerdata[0].data[0].count
 execute store result score #items_given nt_core run data get storage nt:reward playerdata[0].data[0].received
-execute if score #items_to_give nt_core = #items_to_give nt_core run return -1
+execute if score #items_given nt_core = #items_to_give nt_core run return -1
 
 ##give items
 scoreboard players add #reward_count nt_core 1

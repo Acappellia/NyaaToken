@@ -9,7 +9,7 @@ execute unless score #uuid_checkresult nt_core matches 1 run function nt:private
 execute if data storage nt:import import.playerdata[0].data[0] run function nt:private/edit/addplayer_one
 
 ##if error
-execute if score #import_error nt_core matches 1 run function nt:private/edit/import_error
+execute if score #import_error nt_core matches 1 as @p[tag=nt_import] run function nt:private/edit/import_error
 execute if score #import_error nt_core matches 1 run return -1
 
 ##remove 1st player
@@ -22,7 +22,7 @@ scoreboard players add #import_currentcount nt_core 1
 tellraw @p[tag=nt_import] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"第 ","color":"gray"},{"score":{"name": "#import_currentcount","objective": "nt_core"},"color": "white"},{"text": "/","color": "gray"},{"score":{"name": "#import_totalcount","objective": "nt_core"},"color": "white"},{"text": " 条检查通过...","color": "gray"}]
 
 ##loop - schedule
-execute if data storage nt:import import.playerdata[0] run schedule function nt:private/edit/addplayerdata 1t replace
+execute if data storage nt:import import.playerdata[0] run schedule function nt:private/edit/addplayerdata 1t append
 
 ##finish loop
 execute unless data storage nt:import import.playerdata[0] as @p[tag=nt_import] run function nt:private/edit/addreward_finish

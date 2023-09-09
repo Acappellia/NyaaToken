@@ -2,12 +2,11 @@
 
 execute unless entity @a[tag=nt_unins] run return -1
 
-#TODO clear schedule
 schedule clear nt:private/vloop
 
-scoreboard objectives remove nt_core
-
 execute as @p[tag=nt_unins] run function nt:edit/backupstorage
+
+scoreboard objectives remove nt_core
 
 data remove storage nt:reward items
 data remove storage nt:reward playerdata

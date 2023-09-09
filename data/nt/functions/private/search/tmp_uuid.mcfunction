@@ -7,4 +7,4 @@ data modify storage nt:tmp tmp.UUID_check set from storage nt:tmp tmp.playerdata
 data modify storage nt:tmp tmp.UUID_mark set from storage nt:tmp tmp.playerdata[0].UUID
 
 ##if it has a value, enter loop
-execute if data storage nt:tmp tmp.UUID_check run function nt:private/search/uuid_loop
+execute if data storage nt:tmp tmp.UUID_check run function nt:private/search/tmp_uuid_loop

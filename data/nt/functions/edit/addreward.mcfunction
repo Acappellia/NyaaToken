@@ -22,6 +22,7 @@ tellraw @p[distance=..10] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":
 execute store result score #import_totalcount nt_core if data storage nt:import import.playerdata[]
 
 ##copy to tmp
+data remove storage nt:tmp tmp
 data modify storage nt:tmp tmp.items set from storage nt:reward items
 data modify storage nt:tmp tmp.playerdata set from storage nt:reward playerdata
 
