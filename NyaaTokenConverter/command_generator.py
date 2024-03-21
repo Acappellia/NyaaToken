@@ -2,6 +2,7 @@
 # Follow the instructions to create the correct csv
 # Run this script with -i <filename.csv> to import csv file
 
+import json
 import mcuuid
 import csv, requests, sys, getopt
 
@@ -31,6 +32,10 @@ def get_int_array(playername,try_count):
         int_array = get_int_array(playername, try_count)
         return int_array
     except requests.exceptions.ConnectionError:
+        try_count += 1
+        int_array = get_int_array(playername, try_count)
+        return int_array
+    except json.decoder.JSONDecodeError:
         try_count += 1
         int_array = get_int_array(playername, try_count)
         return int_array
