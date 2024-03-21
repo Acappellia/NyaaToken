@@ -9,6 +9,7 @@
 
 ##check UUID
 data modify storage nt:tmp tmp.UUID_source set from entity @s UUID
+scoreboard players reset #uuid_checkresult nt_core 
 execute store result score #uuid_checkresult nt_core run function nt:private/search/uuid
 execute unless score #uuid_checkresult nt_core matches 1 run tellraw @s [{"text":"[NyaaToken] ","color":"gold"},{"text":"没有查询到可以领取的奖励呢...","color":"gray"}]
 execute unless score #uuid_checkresult nt_core matches 1 run return -1

@@ -2,6 +2,7 @@
 
 ##search player uuid
 data modify storage nt:tmp tmp.UUID_source set from storage nt:import import.playerdata[0].UUID
+scoreboard players reset #uuid_checkresult nt_core 
 execute store result score #uuid_checkresult nt_core run function nt:private/search/tmp_uuid
 execute unless score #uuid_checkresult nt_core matches 1 run function nt:private/edit/init_player
 
