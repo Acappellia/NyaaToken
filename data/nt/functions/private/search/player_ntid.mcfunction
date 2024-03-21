@@ -5,4 +5,4 @@
 
 ##init marker
 execute store result score #search_ntid_mark nt_core store result score #search_ntid_check nt_core run data get storage nt:reward playerdata[0].data[0].ntid
-execute if score #search_ntid_mark nt_core matches 1.. run function nt:private/search/player_ntid_loop
+execute if score #search_ntid_mark nt_core matches 1.. store result score #searchid_result nt_core run function nt:private/search/player_ntid_loop

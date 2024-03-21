@@ -20,4 +20,4 @@ data modify storage nt:tmp tmp.UUID_check set from storage nt:tmp tmp.playerdata
 execute unless score #search_uuid_check nt_core matches 1 run return -1
 
 ##loop
-function nt:private/search/tmp_uuid_loop
+execute store result score #uuid_checkresult nt_core run function nt:private/search/tmp_uuid_loop

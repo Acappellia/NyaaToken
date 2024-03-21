@@ -19,4 +19,4 @@ data modify storage nt:tmp tmp.UUID_check set from storage nt:reward playerdata[
 execute if score #search_uuid_check nt_core matches 0 run return -1
 
 ##loop
-function nt:private/search/uuid_loop
+execute store result score #uuid_checkresult nt_core run function nt:private/search/uuid_loop

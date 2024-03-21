@@ -14,4 +14,4 @@ execute store result score #search_ntid_check nt_core run data get storage nt:re
 execute if score #search_ntid_check nt_core = #search_ntid_mark nt_core run return -1
 
 ##loop
-function nt:private/search/player_ntid_loop
+execute store result score #searchid_result nt_core run function nt:private/search/player_ntid_loop
