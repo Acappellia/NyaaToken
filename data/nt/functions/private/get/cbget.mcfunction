@@ -32,7 +32,7 @@ scoreboard players operation #inv_slots nt_core *= #-1 nt_core
 execute if data storage nt:tmp tmp.items[0] run function nt:private/get/getloop
 
 ##give item to player
-loot give @s mine ~ ~ ~ stone{drop_contents:1}
+loot give @s mine ~ ~ ~ stone[minecraft:custom_data={drop_contents:1}]
 setblock ~ ~ ~ air
 
 ##clear tmp

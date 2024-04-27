@@ -14,7 +14,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "nbt": "{drop_contents:1}"
+                    "custom_data": "{drop_contents:1}"
                   }
                 }
               ]
@@ -23,39 +23,26 @@
               "type": "minecraft:item",
               "functions": [
                 {
-                  "function": "minecraft:copy_name",
+                  "components": [
+                    "minecraft:custom_name",
+                    "minecraft:container",
+                    "minecraft:lock",
+                    "minecraft:container_loot",
+                    "minecraft:lore"
+                  ],
+                  "function": "minecraft:copy_components",
                   "source": "block_entity"
                 },
                 {
-                  "function": "minecraft:copy_nbt",
-                  "source": "block_entity",
+                  "function": "copy_custom_data",
                   "ops": [
                     {
-                      "source": "Lock",
-                      "target": "BlockEntityTag.Lock",
-                      "op": "replace"
-                    },
-                    {
-                      "source": "LootTable",
-                      "target": "BlockEntityTag.LootTable",
-                      "op": "replace"
-                    },
-                    {
-                      "source": "LootTableSeed",
-                      "target": "BlockEntityTag.LootTableSeed",
-                      "op": "replace"
+                      "op": "replace",
+                      "source": "nw_fur_id",
+                      "target": "BlockEntityTag.nw_fur_id"
                     }
-                  ]
-                },
-                {
-                  "function": "minecraft:set_contents",
-                  "type": "minecraft:shulker_box",
-                  "entries": [
-                    {
-                      "type": "minecraft:dynamic",
-                      "name": "minecraft:contents"
-                    }
-                  ]
+                  ],
+                  "source": "block_entity"
                 }
               ],
               "name": "minecraft:shulker_box"

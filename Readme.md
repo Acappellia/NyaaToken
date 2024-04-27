@@ -1,6 +1,11 @@
 # NyaaToken：Event Reward Tools
 
-This datapack has been rewrite for newer versions of Minecraft (1.20.1+).
+## Changelogs
+
+- v2.1
+    - Update to 1.20.5
+- v2.0
+    - Rewrite for Minecraft version 1.20.1+.
 
 ## Features
 
@@ -16,7 +21,7 @@ This datapack has been rewrite for newer versions of Minecraft (1.20.1+).
 
 ## Support Game Version
 
-1.20.1 +
+1.20.5 +
 
 ## Usage
 

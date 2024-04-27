@@ -1,7 +1,7 @@
 ##give another item to player
 
 ##add 1
-loot insert ~ ~ ~ mine ~ ~1 ~ stone{drop_contents:1}
+loot insert ~ ~ ~ mine ~ ~1 ~ stone[minecraft:custom_data={drop_contents:1}]
 
 ##check if player bp full
 execute store result score #give_slots nt_core if data block ~ ~ ~ Items[]
