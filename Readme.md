@@ -1,11 +1,16 @@
 # NyaaToken：Event Reward Tools
 
-## Changelogs
+## Change Logs
 
-- v2.1
-    - Update to 1.20.5
-- v2.0
-    - Rewrite for Minecraft version 1.20.1+.
+### v2.1
+
+- Updated to mc1.20.5
+
+### v2.0
+
+- Complete rewrite for better performance & convenience
+- Reward-giving now only has one mode. Reward data can be imported by external tools.
+- Please uninstall the previous version first to perform a clean update.
 
 ## Features
 
@@ -147,12 +152,3 @@
 - nt:tmp
     - `Compound` tmp : tmp storage
         
-
-
-## Change Logs
-
-### v2.0
-
-- Complete rewrite for better performance & convenience
-- Reward-giving now only has one mode. Reward data can be imported by external tools.
-- Please uninstall the previous version first to perform a clean update.
