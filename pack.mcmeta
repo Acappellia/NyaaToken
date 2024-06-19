@@ -1,13 +1,13 @@
 {
     "pack": {
-        "pack_format": 41,
+        "pack_format": 48,
         "description": [
             {
                 "text": "NyaaToken: Event Reward Tools\n",
                 "color": "#a8e64c"
             },
             {
-                "text": "Version 2.1 - MC 1.20.5",
+                "text": "Version 2.2 - MC 1.21",
                 "color": "#909090"
             }
         ]
