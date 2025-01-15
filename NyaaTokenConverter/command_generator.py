@@ -6,7 +6,7 @@ import json
 import mcuuid
 import csv, requests, sys, getopt
 
-max_try = 20
+max_try = 30
 
 def twos_complement(hexstr,bits):
     value = int(hexstr,16)
