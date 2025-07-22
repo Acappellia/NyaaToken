@@ -2,6 +2,14 @@
 
 ## Change Logs
 
+### v3
+
+- Updated to mc1.21.8
+
+### v2.2
+
+- Updated to mc1.21
+
 ### v2.1
 
 - Updated to mc1.20.5

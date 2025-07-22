@@ -21,4 +21,4 @@ data remove storage nt:import import
 tag @s remove nt_import
 
 ##tellraw
-tellraw @s [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"奖励配置已成功导入，点击此处开启奖励发放。","color":"green","hoverEvent":{"action":"show_text","contents":"开启发放"},"clickEvent":{"action":"run_command","value":"/function nt:maintoggle"}}]
+tellraw @s [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"奖励配置已成功导入，点击此处开启奖励发放。","color":"green","hover_event":{"action":"show_text","value":"开启发放"},"click_event":{"action":"run_command","command":"/function nt:maintoggle"}}]

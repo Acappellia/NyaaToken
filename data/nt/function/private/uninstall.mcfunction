@@ -14,6 +14,6 @@ data remove storage nt:import import
 data remove storage nt:tmp tmp
 
 tellraw @a[tag=nt_unins] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"NyaaToken 已卸载","color":"gray"}]
-tellraw @a[tag=nt_unins] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"如需清除数据备份, 请点击此处","color":"gray","hoverEvent":{"action":"show_text","contents":"清除备份"},"clickEvent":{"action":"suggest_command","value":"/data remove storage nt:backup backup"}}]
+tellraw @a[tag=nt_unins] [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"如需清除数据备份, 请点击此处","color":"gray","hover_event":{"action":"show_text","value":"清除备份"},"click_event":{"action":"suggest_command","command":"/data remove storage nt:backup backup"}}]
 tag @a remove nt_unins
 datapack disable "file/NyaaToken"

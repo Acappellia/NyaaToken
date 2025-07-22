@@ -5,11 +5,11 @@
 execute if block ~ ~ ~ command_block run return -1
 
 ##check given lcid
-execute unless score #remove_ntid nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"未提供需要删除的奖励编号。点击这里添加。","color":"gray","hoverEvent":{"action":"show_text","contents":"输入编号"},"clickEvent":{"action":"suggest_command","value":"/scoreboard players set #remove_ntid nt_core "}}]
+execute unless score #remove_ntid nt_core matches 1.. run tellraw @s [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"未提供需要删除的奖励编号。点击这里添加。","color":"gray","hover_event":{"action":"show_text","value":"输入编号"},"click_event":{"action":"suggest_command","command":"/scoreboard players set #remove_ntid nt_core "}}]
 execute unless score #remove_ntid nt_core matches 1.. run return -1
 
 ##check if items have this id
-execute if score #remove_ntid nt_core > #rewardid nt_core run tellraw @s [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"奖励编号不存在。点击这里修改。","color":"gray","hoverEvent":{"action":"show_text","contents":"输入编号"},"clickEvent":{"action":"suggest_command","value":"/scoreboard players set #remove_ntid nt_core "}}]
+execute if score #remove_ntid nt_core > #rewardid nt_core run tellraw @s [{"text":"[NyaaToken] ","color":"dark_green"},{"text":"奖励编号不存在。点击这里修改。","color":"gray","hover_event":{"action":"show_text","value":"输入编号"},"click_event":{"action":"suggest_command","command":"/scoreboard players set #remove_ntid nt_core "}}]
 execute if score #remove_ntid nt_core > #rewardid nt_core run return -1
 
 ##backup
