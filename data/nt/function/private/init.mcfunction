@@ -14,4 +14,4 @@ execute unless score #rewardOpen nt_core matches 0..1 run scoreboard players set
 #define storage nt:import
 #define storage nt:tmp
 
-schedule function nt:private/vloop 2t replace
+schedule function nt:private/vloop 3t append
