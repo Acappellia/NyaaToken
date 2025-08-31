@@ -96,6 +96,8 @@ for row in rows:
             count = int(row[index])
         except ValueError:
             continue
+        if count == 0:
+            continue
         if datadict[name].get(index) == None:
             datadict[name][index] = int(row[index])
         else:
